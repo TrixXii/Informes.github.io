@@ -12,7 +12,7 @@
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <style>
     * {
@@ -72,14 +72,16 @@
     input[type="text"]:focus,
     input[type="date"]:focus,
     .form-control:focus,
-    .form-select:focus{
+    .form-select:focus {
         transition: 0.5s;
-        box-shadow: 0px 0px 15px #f54e4e ;
+        box-shadow: 0px 0px 15px #f54e4e;
         outline: none;
     }
 
+
     .btn {
         padding: 10px 20px;
+        margin: 0px 5px;
         font-size: 18px;
         color: #fff;
         border: none;
@@ -132,6 +134,11 @@
         border-radius: 10px;
         margin-top: 20px;
     }
+
+    i {
+        margin: 0px 5px;
+        vertical-align: middle;
+    }
 </style>
 
 <body>
@@ -151,13 +158,16 @@
                     <select class="form-select" name="name-team" id="name-team">
                         <option value="" selected disabled>Selecciona un equipo</option>
                         <option value="BAD Lions Principal">BAD Lions Principal</option>
-                        <option value="BAD Lions Academia">BAD Lions Academia</option>
+                        <option value="BAD Lions Academy">BAD Lions Academy</option>
                         <option value="BAD Lions Italiano">BAD Lions Italiano</option>
+                        <option value="BAD Lions Italiano Academy">BAD Lions Italiano Academy</option>
+
                     </select>
                     <label for="Fecha">Fecha documento:</label>
                     <input class="form-control" name="Fecha" id="fecha" type="date" placeholder="Selecciona una fecha">
 
-                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente</button>
+                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente <i
+                            class="fa fa-chevron-right"></i> </button>
                 </div>
 
                 <!-- Página 2 -->
@@ -171,8 +181,10 @@
                     <textarea class="form-control" name="obj_trabajado" id="obj_trabajado" rows="3" required
                         placeholder="Escribe los objetivos que se añan trabajado"></textarea>
 
-                    <button class="btn btn-secondary" type="button" onclick="prevPage()">Anterior</button>
-                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente</button>
+                    <button class="btn btn-secondary" type="button" onclick="prevPage()"><i
+                            class="fa fa-chevron-left"></i> Anterior </button>
+                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente <i
+                            class="fa fa-chevron-right"></i> </button>
                 </div>
 
                 <!-- Página 3 -->
@@ -186,8 +198,10 @@
                     <textarea class="form-control" name="comportamiento" id="comportamiento" rows="4" cols="50" required
                         placeholder="Escribe tus observaciones sobre el comportamiento del equipo"></textarea>
 
-                    <button class="btn btn-secondary" type="button" onclick="prevPage()">Anterior</button>
-                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente</button>
+                    <button class="btn btn-secondary" type="button" onclick="prevPage()"><i
+                            class="fa fa-chevron-left"></i> Anterior </button>
+                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente <i
+                            class="fa fa-chevron-right"></i> </button>
                 </div>
 
                 <!-- Página 4 -->
@@ -218,8 +232,10 @@
                         </option>
                     </select>
 
-                    <button class="btn btn-secondary" type="button" onclick="prevPage()">Anterior</button>
-                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente</button>
+                    <button class="btn btn-secondary" type="button" onclick="prevPage()"><i
+                            class="fa fa-chevron-left"></i> Anterior </button>
+                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente <i
+                            class="fa fa-chevron-right"></i> </button>
                 </div>
 
                 <!-- Página 5 -->
@@ -229,10 +245,12 @@
                     <textarea class="form-control" name="inconveniente" id="inconveniente" rows="3"
                         placeholder="Escribe cualquier inconveniente que hayas encontrado"></textarea>
 
-                    <button class="btn btn-secondary" type="button" onclick="prevPage()">Anterior</button>
-                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente</button>
+                    <button class="btn btn-secondary" type="button" onclick="prevPage()"><i
+                            class="fa fa-chevron-left"></i> Anterior </button>
+                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente <i
+                            class="fa fa-chevron-right"></i> </button>
                 </div>
-
+                <!-- Página 6 -->
                 <div class="page" id="page6">
                     <h3>Punto de vista de progreso</h3>
                     <label for="nivel_equipo">¿Qué tal se ve al equipo de nivel?</label>
@@ -244,8 +262,10 @@
                     <textarea class="form-control" name="entrenamiento_personas" id="entrenamiento_personas" rows="3"
                         required placeholder="Escribe tus observaciones sobre el progreso de las personas"></textarea>
 
-                    <button class="btn btn-secondary" onclick="prevPage()">Anterior</button>
-                    <button type="submit" class="btn btn-danger" value="Enviar">Descargar Informe</button>
+                    <button class="btn btn-secondary" type="button" onclick="prevPage()"><i
+                            class="fa fa-chevron-left"></i> Anterior </button>
+                    <button type="submit" class="btn btn-danger" value="Enviar">Descargar Informe <i
+                            class="fa fa-file-pdf-o"></i></button>
                 </div>
             </form>
         </div>
@@ -386,10 +406,26 @@
                         style: 'tarjeta', // Estilo para una tarjeta
                         margin: [0, 10],
                         stack: [
+                            { text: '¿Qué tal se ve al equipo de nivel?', style: 'titulo' },
+                            { text: nivel_equipo, style: 'texto' },
+                        ],
+                    }, {
+                        style: 'tarjeta', // Estilo para una tarjeta
+                        margin: [0, 10],
+                        stack: [
+                            { text: '¿Qué personas tienen que entrenar más o qué personas están al nivel óptimo?', style: 'titulo' },
+                            { text: entrenamiento_personas, style: 'texto' },
+                        ],
+                    },
+                    {
+                        style: 'tarjeta', // Estilo para una tarjeta
+                        margin: [0, 10],
+                        stack: [
                             { text: 'Quejas o Problemas', style: 'titulo' },
                             { text: inconveniente, style: 'texto' },
                         ],
                     },
+                   
 
                 ],
                 styles: {
@@ -406,13 +442,13 @@
                         margin: [0, 20], // Agrega espacio arriba y abajo del encabezado
                     },
                     titulo: {
-                        fontSize: 16, // Tamaño de fuente más grande para los títulos
+                        fontSize: 15, // Tamaño de fuente más grande para los títulos
                         bold: true,
                         color: '#333',
                         margin: [0, 5], // Agrega espacio arriba y abajo de los títulos
                     },
                     texto: {
-                        fontSize: 12, // Tamaño de fuente ligeramente más pequeño para el texto
+                        fontSize: 13, // Tamaño de fuente ligeramente más pequeño para el texto
                         margin: [0, 5], // Agrega espacio arriba y abajo del texto
                     },
                     container: {
@@ -421,6 +457,7 @@
                     },
                     tarjeta: {
                         padding: 10,
+                        color: '#333',
                         margin: [0, 5],
 
                     },
