@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Datos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+
+</head>
+<style>
+    * {
+        margin: 0%;
+        padding: 0%;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./pxfuel.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 100vh;
+        color: #ffffff;
+        /* Color del texto principal */
+    }
+
+    .imag {
+        width: 120px;
+        margin: 30px 50px;
+        max-width: 100%;
+
+    }
+
+    h2 {
+        text-align: center;
+        color: #eb1515;
+        /* Color azul agradable para títulos */
+    }
+
+    h3 {
+        color: #cc1a1a;
+    }
+
+    label,
+    textarea,
+    input,
+    input select {
+        text-align: start;
+        width: 100%;
+        margin-top: 10px;
+        padding: 8px;
+        border-radius: 3px;
+        font-size: 17px;
+    }
+
+    button {
+        margin-top: 20px;
+    }
+
+    .top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .page {
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #202020;
+        box-shadow: 0px 1px 10px #ff0000;
+        display: none;
+        position: absolute;
+        width: 90%;
+        height: 530px;
+        max-width: 800px;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .page.active {
+        display: block;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    .custom-form {
+        width: 90%;
+        max-width: 600px;
+        margin: 0 auto;
+        height: 520px;
+    }
+</style>
+
+<body>
+    <div class="container main-container">
+        <header class="top ">
+            <img src="./Logo_BAD_Nuevo.png" class="imag">
+            <h2>INFORME EQUIPO</h2>
+        </header>
+        <div class="fondo-form">
+
+            <form onsubmit="guardarDatos(event)" id="mi-formulario">
+                <!-- Página 1 -->
+                <div class="page active" id="page1">
+                    <h3>Detalles del informe</h3>
+
+                    <label for="name-team">¿A que equipo pertenece este informe?</label>
+                    <select class="form-select" name="name-team" id="name-team">
+                        <option value="BAD Lions Principal" selected>BAD Lions Principal</option>
+                        <option value="BAD Lions Academia">BAD Lions Academia</option>
+                        <option value="BAD Lions Italiano">BAD Lions Italiano</option>
+                    </select>
+                    <label for="Fecha">Fecha documento:</label>
+                    <input class="form-control" name="Fecha" id="fecha" type="date">
+
+                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente</button>
+
+                </div>
+                <!-- Página 2 -->
+
+                <div class="page " id="page2">
+                    <h3>Objetivo Semanal:</h3>
+                    <label for="obj_hecho">¿Qué se ha hecho esta semana?</label>
+                    <textarea class="form-control" name="obj_hecho" id="obj_hecho" rows="3" required
+                        placeholder="Pon que entrenos se an echo, objetivos realizados, etc..."></textarea>
+
+                    <label for="obj_trabajado">¿Se ha trabajado como se esperaba en el objetivo?</label>
+                    <textarea class="form-control" name="obj_trabajado" id="obj_trabajado" rows="3" required></textarea>
+
+                    <button class="btn btn-secondary" type="button" onclick="prevPage()">Anterior</button>
+                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente</button>
+                </div>
+
+                <!-- Página 3 -->
+                <div class="page" id="page3">
+                    <h3>Estado del equipo:</h3>
+                    <label for="jugador_fallado">¿Algún Jugador ha fallado?</label>
+                    <input class="form-control" type="text" name="jugador_fallado" id="jugador_fallado" required p>
+
+                    <label for="comportamiento">Comportamiento tanto general como individual</label>
+                    <textarea class="form-control" name="comportamiento" id="comportamiento" rows="4" cols="50"
+                        required></textarea>
+
+                    <button class="btn btn-secondary" type="button" onclick="prevPage()">Anterior</button>
+                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente</button>
+                </div>
+
+                <!-- Página 4 -->
+                <div class="page" id="page4">
+
+                    <h3>Entrenamientos:</h3>
+                    <label for="dias_entrenados">¿Cuántos días se ha entrenado?</label>
+                    <select class="form-select" name="dias_entrenados" id="dias_entrenados">
+                        <option value="0 Días" selected>0 Días</option>
+                        <option value="1 Día">1 Día</option>
+                        <option value="2 Días">2 Días</option>
+                        <option value="3 Días">3 Días</option>
+                        <option value="4 Días">4 Días</option>
+                        <option value="5 Días">5 Días</option>
+                        <option value="6 Días">6 Días</option>
+                    </select>
+
+                    <label for="compas_puntualidad">¿Puntualidad? (Tanto jugadores como entrenador)</label>
+                    <select class="form-select" name="compas_puntualidad" id="compas_puntualidad">
+                        <option value="No se presentan" selected>No se presentan</option>
+                        <option value="Suelen tardar entre unos 10-15 minutos">Suelen tardar entre unos 10-15 minutos
+                        </option>
+                        <option value="El entrenador no se a presentado pero los jugadores han sido puntuales">El
+                            entrenador no se a presentado pero los jugadores han sido puntuales</option>
+                        <option value="Todos han sido puntualoes">Todos han sido puntualoes</option>
+                        <option value="Algunos entran antes para hacer planes">Algunos entran antes para hacer planes
+                        </option>
+                    </select>
+
+                    <button class="btn btn-secondary" type="button" onclick="prevPage()">Anterior</button>
+                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente</button>
+
+                </div>
+                <!-- Página 5 -->
+                <div class="page" id="page5">
+
+                    <h3>Quejas o Problemas:</h3>
+                    <label for="inconveniente">¿Algún inconveniente en la semana?</label>
+                    <textarea class="form-control" name="inconveniente" id="inconveniente" rows="3"></textarea>
+
+                    <button class="btn btn-secondary" type="button" onclick="prevPage()">Anterior</button>
+                    <!-- <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente</button> -->
+                    <button type="submit" class="btn btn-danger" value="Enviar">Descargar Informe</button>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 6;
+        var datosDelFormulario = {};
+
+        function showPage(pageNumber) {
+            for (let i = 1; i <= totalPages; i++) {
+                const page = document.getElementById(`page${i}`);
+                if (i === pageNumber) {
+                    page.classList.add("active");
+                } else {
+                    page.classList.remove("active");
+                }
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        }
+
+        // Función para guardar los datos del formulario como un archivo PDF
+        function guardarDatos(event) {
+            event.preventDefault(); // Evitar que el formulario se envíe y recargue la página
+
+            // Obtener los valores de los campos del formulario
+            var equipo = document.getElementById('name-team').value;
+            var objHecho = document.getElementById('obj_hecho').value;
+            var objTrabajado = document.getElementById('obj_trabajado').value;
+            var fecha = document.getElementById('fecha').value;
+            var jugadorFallado = document.getElementById('jugador_fallado').value;
+            var comportamiento = document.getElementById('comportamiento').value;
+            var dias_entrenados = document.getElementById('dias_entrenados').value;
+            var compas_puntualidad = document.getElementById('compas_puntualidad').value;
+            var inconveniente = document.getElementById('inconveniente').value;
+
+            var linea = '';
+
+            var marcaDeAgua = {
+                image: './Logo_BAD_Nuevo.png',
+                width: 300, // Ancho de la imagen
+                height: 400, // Altura de la imagen
+            };
+
+
+            // Crear un documento PDF
+            var docDefinition = {
+                content: [
+                    // { 
+                    //     background: [marcaDeAgua], 
+                    // },
+                    {
+                        text: fecha,
+                        alignment: 'right',
+                        style: 'fecha',
+                    },
+                    {
+                        text: 'Informe de Equipo ' + equipo,
+                        style: 'header',
+                        margin: [0, 20, 0, 10], // Margen superior e inferior para el encabezado
+                    },
+                    {
+                        text: linea, style: 'texto',
+
+                    },
+                    {
+                        style: 'container', // Estilo para un contenedor
+                        margin: [0, 10],
+                        columns: [
+                            {
+                                width: '50%',
+                                margin: [0, 10],
+                                stack: [
+                                    { text: 'Días Entrenados', style: 'titulo' },
+                                    { text: dias_entrenados, style: 'texto' },
+                                ],
+                            },
+                            {
+                                style: 'tarjeta',
+                                margin: [0, 10],
+                                stack: [
+                                    { text: 'Puntualidad del equipo', style: 'titulo' },
+                                    { text: compas_puntualidad, style: 'texto' },
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        style: 'tarjeta', // Estilo para una tarjeta
+                        margin: [0, 10],
+                        stack: [
+                            { text: 'Objetivos Hechos', style: 'titulo' },
+                            { text: objHecho, style: 'texto' },
+                        ],
+                    },
+                    {
+                        style: 'tarjeta', // Estilo para una tarjeta
+                        margin: [0, 10],
+                        stack: [
+                            { text: 'Objetivos Trabajados', style: 'titulo' },
+                            { text: objTrabajado, style: 'texto' },
+                        ],
+                    },
+                    {
+                        style: 'tarjeta', // Estilo para una tarjeta
+                        margin: [0, 10],
+                        stack: [
+                            { text: 'Jugadores que ayan fallado', style: 'titulo' },
+                            { text: jugadorFallado, style: 'texto' },
+                        ],
+                    },
+                    {
+                        style: 'tarjeta', // Estilo para una tarjeta
+                        margin: [0, 10],
+                        stack: [
+                            { text: 'Comportamiento', style: 'titulo' },
+                            { text: comportamiento, style: 'texto' },
+                        ],
+                    },
+                    {
+                        style: 'tarjeta', // Estilo para una tarjeta
+                        margin: [0, 10],
+                        stack: [
+                            { text: 'Quejas o Problemas', style: 'titulo' },
+                            { text: inconveniente, style: 'texto' },
+                        ],
+                    },
+
+                ],
+                styles: {
+                    fecha: {
+                        fontSize: 12,
+                        color: '#333', // Cambia el color de la fecha si lo deseas
+                        marginBottom: 10, // Agrega espacio después de la fecha
+                    },
+                    header: {
+                        fontSize: 24, // Tamaño de fuente más grande para el encabezado
+                        color: '#f54e4e',
+                        bold: true,
+                        alignment: 'center',
+                        margin: [0, 20], // Agrega espacio arriba y abajo del encabezado
+                    },
+                    titulo: {
+                        fontSize: 16, // Tamaño de fuente más grande para los títulos
+                        bold: true,
+                        color: '#333',
+                        margin: [0, 10], // Agrega espacio arriba y abajo de los títulos
+                    },
+                    texto: {
+                        fontSize: 12, // Tamaño de fuente ligeramente más pequeño para el texto
+                        margin: [0, 5], // Agrega espacio arriba y abajo del texto
+                    },
+                    container: {
+                        padding: 10,
+                        margin: [0, 10], // Agrega espacio arriba y abajo del contenedor
+                    },
+                    tarjeta: {
+                        padding: 10,
+                        margin: [0, 5],
+                        fillColor: '#f2f2f2', // Cambia el color de fondo de la tarjeta
+                        borderColor: '#ccc', // Cambia el color del borde de la tarjeta
+                        borderWidth: 1, // Ancho del borde de la tarjeta
+                        borderRadius: 5, // Radio del borde de la tarjeta
+                    },
+                }
+
+            };
+
+            // Generar el archivo PDF
+            pdfMake.createPdf(docDefinition).download('InformeEquipo.pdf');
+
+            document.getElementById('mi-formulario').reset(); // Reemplaza 'mi-formulario' con el ID de tu formulario
+
+
+        }
+
+    </script>
+</body>
+
+
+</html>
