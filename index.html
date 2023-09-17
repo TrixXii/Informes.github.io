@@ -35,33 +35,63 @@
         width: 120px;
         margin: 30px 50px;
         max-width: 100%;
-
     }
 
     h2 {
         text-align: center;
         color: #eb1515;
-        /* Color azul agradable para títulos */
     }
 
-    h3 {
-        color: #cc1a1a;
+    .page h3 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        color: #f54e4e;
     }
 
-    label,
-    textarea,
-    input,
-    input select {
+    label {
         text-align: start;
-        width: 100%;
-        margin-top: 10px;
-        padding: 8px;
-        border-radius: 3px;
-        font-size: 17px;
+        display: block;
+        font-size: 16px;
+        margin: 15px 0px;
     }
 
-    button {
-        margin-top: 20px;
+    input[type="text"],
+    input[type="date"],
+    .form-control,
+    .form-select {
+        margin-top: 10px;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 2px;
+        border-radius: 5px;
+        font-size: 17px;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"]:focus,
+    input[type="date"]:focus,
+    .form-control:focus,
+    .form-select:focus{
+        transition: 0.5s;
+        box-shadow: 0px 0px 15px #f54e4e ;
+        outline: none;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 18px;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .btn-secondary {
+        background-color: #333;
+    }
+
+    .btn-danger {
+        background-color: #f54e4e;
     }
 
     .top {
@@ -74,7 +104,7 @@
         padding: 20px;
         border-radius: 10px;
         background-color: #202020;
-        box-shadow: 0px 1px 10px #ff0000;
+        box-shadow: 0px 0px 15px #eb1515;
         display: none;
         position: absolute;
         width: 90%;
@@ -98,6 +128,9 @@
         max-width: 600px;
         margin: 0 auto;
         height: 520px;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
     }
 </style>
 
@@ -114,28 +147,29 @@
                 <div class="page active" id="page1">
                     <h3>Detalles del informe</h3>
 
-                    <label for="name-team">¿A que equipo pertenece este informe?</label>
+                    <label for="name-team">¿A qué equipo pertenece este informe?</label>
                     <select class="form-select" name="name-team" id="name-team">
-                        <option value="BAD Lions Principal" selected>BAD Lions Principal</option>
+                        <option value="" selected disabled>Selecciona un equipo</option>
+                        <option value="BAD Lions Principal">BAD Lions Principal</option>
                         <option value="BAD Lions Academia">BAD Lions Academia</option>
                         <option value="BAD Lions Italiano">BAD Lions Italiano</option>
                     </select>
                     <label for="Fecha">Fecha documento:</label>
-                    <input class="form-control" name="Fecha" id="fecha" type="date">
+                    <input class="form-control" name="Fecha" id="fecha" type="date" placeholder="Selecciona una fecha">
 
                     <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente</button>
-
                 </div>
-                <!-- Página 2 -->
 
+                <!-- Página 2 -->
                 <div class="page " id="page2">
-                    <h3>Objetivo Semanal:</h3>
+                    <h3>Objetivo Semanal</h3>
                     <label for="obj_hecho">¿Qué se ha hecho esta semana?</label>
                     <textarea class="form-control" name="obj_hecho" id="obj_hecho" rows="3" required
-                        placeholder="Pon que entrenos se an echo, objetivos realizados, etc..."></textarea>
+                        placeholder="Escribe qué entrenos se han hecho, objetivos realizados, etc..."></textarea>
 
                     <label for="obj_trabajado">¿Se ha trabajado como se esperaba en el objetivo?</label>
-                    <textarea class="form-control" name="obj_trabajado" id="obj_trabajado" rows="3" required></textarea>
+                    <textarea class="form-control" name="obj_trabajado" id="obj_trabajado" rows="3" required
+                        placeholder="Escribe los objetivos que se añan trabajado"></textarea>
 
                     <button class="btn btn-secondary" type="button" onclick="prevPage()">Anterior</button>
                     <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente</button>
@@ -143,13 +177,14 @@
 
                 <!-- Página 3 -->
                 <div class="page" id="page3">
-                    <h3>Estado del equipo:</h3>
+                    <h3>Estado del equipo</h3>
                     <label for="jugador_fallado">¿Algún Jugador ha fallado?</label>
-                    <input class="form-control" type="text" name="jugador_fallado" id="jugador_fallado" required p>
+                    <input class="form-control" type="text" name="jugador_fallado" id="jugador_fallado" required
+                        placeholder="Escribe el nombre del jugador que ha fallado o mas de 1. Ej: BAD (nombre), BAD (nombre) ">
 
                     <label for="comportamiento">Comportamiento tanto general como individual</label>
-                    <textarea class="form-control" name="comportamiento" id="comportamiento" rows="4" cols="50"
-                        required></textarea>
+                    <textarea class="form-control" name="comportamiento" id="comportamiento" rows="4" cols="50" required
+                        placeholder="Escribe tus observaciones sobre el comportamiento del equipo"></textarea>
 
                     <button class="btn btn-secondary" type="button" onclick="prevPage()">Anterior</button>
                     <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente</button>
@@ -157,11 +192,11 @@
 
                 <!-- Página 4 -->
                 <div class="page" id="page4">
-
-                    <h3>Entrenamientos:</h3>
+                    <h3>Entrenamientos</h3>
                     <label for="dias_entrenados">¿Cuántos días se ha entrenado?</label>
                     <select class="form-select" name="dias_entrenados" id="dias_entrenados">
-                        <option value="0 Días" selected>0 Días</option>
+                        <option value="" selected disabled>Selecciona la cantidad de días</option>
+                        <option value="0 Días">0 Días</option>
                         <option value="1 Día">1 Día</option>
                         <option value="2 Días">2 Días</option>
                         <option value="3 Días">3 Días</option>
@@ -172,7 +207,8 @@
 
                     <label for="compas_puntualidad">¿Puntualidad? (Tanto jugadores como entrenador)</label>
                     <select class="form-select" name="compas_puntualidad" id="compas_puntualidad">
-                        <option value="No se presentan" selected>No se presentan</option>
+                        <option value="" selected disabled>Selecciona la puntualidad</option>
+                        <option value="No se presentan">No se presentan</option>
                         <option value="Suelen tardar entre unos 10-15 minutos">Suelen tardar entre unos 10-15 minutos
                         </option>
                         <option value="El entrenador no se a presentado pero los jugadores han sido puntuales">El
@@ -184,20 +220,32 @@
 
                     <button class="btn btn-secondary" type="button" onclick="prevPage()">Anterior</button>
                     <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente</button>
-
                 </div>
+
                 <!-- Página 5 -->
                 <div class="page" id="page5">
-
-                    <h3>Quejas o Problemas:</h3>
+                    <h3>Quejas o Problemas</h3>
                     <label for="inconveniente">¿Algún inconveniente en la semana?</label>
-                    <textarea class="form-control" name="inconveniente" id="inconveniente" rows="3"></textarea>
+                    <textarea class="form-control" name="inconveniente" id="inconveniente" rows="3"
+                        placeholder="Escribe cualquier inconveniente que hayas encontrado"></textarea>
 
                     <button class="btn btn-secondary" type="button" onclick="prevPage()">Anterior</button>
-                    <!-- <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente</button> -->
+                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente</button>
+                </div>
+
+                <div class="page" id="page6">
+                    <h3>Punto de vista de progreso</h3>
+                    <label for="nivel_equipo">¿Qué tal se ve al equipo de nivel?</label>
+                    <textarea class="form-control" name="nivel_equipo" id="nivel_equipo" rows="3" required
+                        placeholder="Escribe tu evaluación del nivel del equipo"></textarea>
+
+                    <label for="entrenamiento_personas">¿Qué personas tienen que entrenar más o qué personas están al
+                        nivel óptimo?</label>
+                    <textarea class="form-control" name="entrenamiento_personas" id="entrenamiento_personas" rows="3"
+                        required placeholder="Escribe tus observaciones sobre el progreso de las personas"></textarea>
+
+                    <button class="btn btn-secondary" onclick="prevPage()">Anterior</button>
                     <button type="submit" class="btn btn-danger" value="Enviar">Descargar Informe</button>
-
-
                 </div>
             </form>
         </div>
@@ -247,6 +295,9 @@
             var dias_entrenados = document.getElementById('dias_entrenados').value;
             var compas_puntualidad = document.getElementById('compas_puntualidad').value;
             var inconveniente = document.getElementById('inconveniente').value;
+            var nivel_equipo = document.getElementById('nivel_equipo').value;
+            var entrenamiento_personas = document.getElementById('entrenamiento_personas').value;
+
 
             var linea = '';
 
@@ -371,7 +422,7 @@
                     tarjeta: {
                         padding: 10,
                         margin: [0, 5],
-                        
+
                     },
                 }
 
