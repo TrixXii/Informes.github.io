@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Formulario de Datos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -26,10 +27,11 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
-        height: 100vh;
         color: #ffffff;
-        /* Color del texto principal */
+        height: 100vh;
+        /* Establece la altura del cuerpo al 100% del viewport height (tamaño de la pantalla) */
     }
+
 
     .imag {
         width: 120px;
@@ -40,11 +42,12 @@
     h2 {
         text-align: center;
         color: #eb1515;
+
     }
 
     .page h3 {
         font-size: 32px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         color: #f54e4e;
     }
 
@@ -100,21 +103,20 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-bottom: 20px;
     }
 
     .page {
         padding: 20px;
         border-radius: 10px;
         background-color: #202020;
-        box-shadow: 0px 0px 15px #eb1515;
+        box-shadow: 0px 0px 15px #f54e4e;
         display: none;
-        position: absolute;
         width: 90%;
-        height: 530px;
+        height: 510px;
         max-width: 800px;
-        top: 55%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        margin: auto;
+
     }
 
     .page.active {
@@ -123,16 +125,6 @@
 
     .container {
         text-align: center;
-    }
-
-    .custom-form {
-        width: 90%;
-        max-width: 600px;
-        margin: 0 auto;
-        height: 520px;
-        padding: 20px;
-        border-radius: 10px;
-        margin-top: 20px;
     }
 
     i {
@@ -163,6 +155,10 @@
                         <option value="BAD Lions Italiano Academy">BAD Lions Italiano Academy</option>
 
                     </select>
+
+                    <label for="name-DOC"> Pon el nombre de quien hace el documento:</label>
+                    <input type="text" class="form-control" name="name-DOC" id="name-DOC" placeholder="Ej: Pepito">
+
                     <label for="Fecha">Fecha documento:</label>
                     <input class="form-control" name="Fecha" id="fecha" type="date" placeholder="Selecciona una fecha">
 
@@ -240,18 +236,7 @@
 
                 <!-- Página 5 -->
                 <div class="page" id="page5">
-                    <h3>Quejas o Problemas</h3>
-                    <label for="inconveniente">¿Algún inconveniente en la semana?</label>
-                    <textarea class="form-control" name="inconveniente" id="inconveniente" rows="3"
-                        placeholder="Escribe cualquier inconveniente que hayas encontrado"></textarea>
 
-                    <button class="btn btn-secondary" type="button" onclick="prevPage()"><i
-                            class="fa fa-chevron-left"></i> Anterior </button>
-                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente <i
-                            class="fa fa-chevron-right"></i> </button>
-                </div>
-                <!-- Página 6 -->
-                <div class="page" id="page6">
                     <h3>Punto de vista de progreso</h3>
                     <label for="nivel_equipo">¿Qué tal se ve al equipo de nivel?</label>
                     <textarea class="form-control" name="nivel_equipo" id="nivel_equipo" rows="3" required
@@ -262,6 +247,17 @@
                     <textarea class="form-control" name="entrenamiento_personas" id="entrenamiento_personas" rows="3"
                         required placeholder="Escribe tus observaciones sobre el progreso de las personas"></textarea>
 
+                    <button class="btn btn-secondary" type="button" onclick="prevPage()"><i
+                            class="fa fa-chevron-left"></i> Anterior </button>
+                    <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente <i
+                            class="fa fa-chevron-right"></i> </button>
+                </div>
+                <!-- Página 6 -->
+                <div class="page" id="page6">
+                    <h3>Quejas o Problemas</h3>
+                    <label for="inconveniente">¿Algún inconveniente en la semana?</label>
+                    <textarea class="form-control" name="inconveniente" id="inconveniente" rows="3"
+                        placeholder="Escribe cualquier inconveniente que hayas encontrado"></textarea>
                     <button class="btn btn-secondary" type="button" onclick="prevPage()"><i
                             class="fa fa-chevron-left"></i> Anterior </button>
                     <button type="submit" class="btn btn-danger" value="Enviar">Descargar Informe <i
@@ -317,9 +313,7 @@
             var inconveniente = document.getElementById('inconveniente').value;
             var nivel_equipo = document.getElementById('nivel_equipo').value;
             var entrenamiento_personas = document.getElementById('entrenamiento_personas').value;
-
-
-            var linea = '';
+            var name_DOC = document.getElementById('name-DOC').value;
 
             var marcaDeAgua = {
                 image: './Logo_BAD_Nuevo.png',
@@ -335,29 +329,40 @@
                     //     background: [marcaDeAgua], 
                     // },
                     {
-                        text: fecha,
-                        alignment: 'right',
-                        style: 'fecha',
+                        style: 'container', // Estilo para un contenedor
+                        margin: [0, 5],
+                        columns: [
+                            
+                            {
+                                width: '90%',
+                                stack: [
+                                  { text: name_DOC, width: 'auto', style: 'nameDOC'}
+                                ],
+                                
+                            },
+                            {
+                                text: fecha,
+                                width: 'auto', // Opcional, ajusta el ancho según el contenido
+                                style: 'fecha'
+                            }
+                        ]
                     },
+
                     {
                         text: 'Informe de Equipo ' + equipo,
                         style: 'header',
                         margin: [0, 20, 0, 10], // Margen superior e inferior para el encabezado
                     },
                     {
-                        text: linea, style: 'texto',
-
-                    },
-                    {
                         style: 'container', // Estilo para un contenedor
-                        margin: [0, 10],
+                        margin: [0, 5],
                         columns: [
                             {
                                 width: '50%',
                                 margin: [0, 10],
                                 stack: [
                                     { text: 'Días Entrenados', style: 'titulo' },
-                                    { text: dias_entrenados, style: 'texto' },
+                                    { text: dias_entrenados, style: 'texto2' },
                                 ],
                             },
                             {
@@ -365,7 +370,7 @@
                                 margin: [0, 10],
                                 stack: [
                                     { text: 'Puntualidad del equipo', style: 'titulo' },
-                                    { text: compas_puntualidad, style: 'texto' },
+                                    { text: compas_puntualidad, style: 'texto2' },
                                 ],
                             },
                         ],
@@ -425,11 +430,16 @@
                             { text: inconveniente, style: 'texto' },
                         ],
                     },
-                   
+
 
                 ],
                 styles: {
                     fecha: {
+                        fontSize: 12,
+                        color: '#333', // Cambia el color de la fecha si lo deseas
+                        marginBottom: 10, // Agrega espacio después de la fecha
+                    },
+                    nameDOC: {
                         fontSize: 12,
                         color: '#333', // Cambia el color de la fecha si lo deseas
                         marginBottom: 10, // Agrega espacio después de la fecha
@@ -439,26 +449,24 @@
                         color: '#f54e4e',
                         bold: true,
                         alignment: 'center',
-                        margin: [0, 20], // Agrega espacio arriba y abajo del encabezado
                     },
                     titulo: {
                         fontSize: 15, // Tamaño de fuente más grande para los títulos
                         bold: true,
                         color: '#333',
-                        margin: [0, 5], // Agrega espacio arriba y abajo de los títulos
                     },
                     texto: {
                         fontSize: 13, // Tamaño de fuente ligeramente más pequeño para el texto
-                        margin: [0, 5], // Agrega espacio arriba y abajo del texto
+                        margin: [10, 5]
                     },
-                    container: {
-                        padding: 10,
-                        margin: [0, 10], // Agrega espacio arriba y abajo del contenedor
+                    texto2: {
+                        fontSize: 13, // Tamaño de fuente ligeramente más pequeño para el texto
+                        margin: [0, 5],
+                        color: '#828282',
                     },
                     tarjeta: {
-                        padding: 10,
+                        padding: 5,
                         color: '#333',
-                        margin: [0, 5],
 
                     },
                 }
