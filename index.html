@@ -152,20 +152,19 @@
                         <option value="BAD Lions Academy">BAD Lions Academy</option>
                         <option value="BAD Lions Italiano">BAD Lions Italiano</option>
                         <option value="BAD Lions Italiano Academy">BAD Lions Italiano Academy</option>
-
                     </select>
 
-                    <label for="name-DOC"> Pon el nombre de quien hace el documento:</label>
+                    <label for="name-DOC">Pon el nombre de quien hace el documento:</label>
                     <input type="text" class="form-control" name="name-DOC" id="name-DOC" placeholder="Ej: Pepito">
 
                     <label for="Fecha">Fecha documento:</label>
                     <input class="form-control" name="Fecha" id="fecha" type="date" placeholder="Selecciona una fecha">
 
                     <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente <i
-                            class="fa fa-chevron-right"></i> </button>
+                            class="fa fa-chevron-right"></i></button>
                 </div>
                 <!-- Página 2 -->
-                <div class="page " id="page2">
+                <div class="page" id="page2">
                     <h3>Objetivo Semanal</h3>
                     <label for="obj_hecho">¿Qué se ha hecho esta semana?</label>
                     <textarea class="form-control" name="obj_hecho" id="obj_hecho" rows="3" required
@@ -173,19 +172,19 @@
 
                     <label for="obj_trabajado">¿Se ha trabajado como se esperaba en el objetivo?</label>
                     <textarea class="form-control" name="obj_trabajado" id="obj_trabajado" rows="3" required
-                        placeholder="Escribe los objetivos que se añan trabajado"></textarea>
+                        placeholder="Escribe los objetivos que se han trabajado"></textarea>
 
                     <button class="btn btn-secondary" type="button" onclick="prevPage()"><i
                             class="fa fa-chevron-left"></i> Anterior </button>
                     <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente <i
-                            class="fa fa-chevron-right"></i> </button>
+                            class="fa fa-chevron-right"></i></button>
                 </div>
                 <!-- Página 3 -->
                 <div class="page" id="page3">
                     <h3>Estado del equipo</h3>
-                    <label for="jugador_fallado">¿Algún Jugador ha fallado?</label>
+                    <label for="jugador_fallado">¿Algún jugador ha fallado?</label>
                     <input class="form-control" type="text" name="jugador_fallado" id="jugador_fallado" required
-                        placeholder="Escribe el nombre del jugador que ha fallado o mas de 1. Ej: BAD (nombre), BAD (nombre) ">
+                        placeholder="Escribe el nombre del jugador que ha fallado o más de 1. Ej: BAD (nombre), BAD (nombre)">
 
                     <label for="comportamiento">Comportamiento tanto general como individual</label>
                     <textarea class="form-control" name="comportamiento" id="comportamiento" rows="4" cols="50" required
@@ -194,7 +193,7 @@
                     <button class="btn btn-secondary" type="button" onclick="prevPage()"><i
                             class="fa fa-chevron-left"></i> Anterior </button>
                     <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente <i
-                            class="fa fa-chevron-right"></i> </button>
+                            class="fa fa-chevron-right"></i></button>
                 </div>
                 <!-- Página 4 -->
                 <div class="page" id="page4">
@@ -217,9 +216,9 @@
                         <option value="No se presentan">No se presentan</option>
                         <option value="Suelen tardar entre unos 10-15 minutos">Suelen tardar entre unos 10-15 minutos
                         </option>
-                        <option value="El entrenador no se a presentado pero los jugadores han sido puntuales">El
-                            entrenador no se a presentado pero los jugadores han sido puntuales</option>
-                        <option value="Todos han sido puntualoes">Todos han sido puntualoes</option>
+                        <option value="El entrenador no se ha presentado pero los jugadores han sido puntuales">El
+                            entrenador no se ha presentado pero los jugadores han sido puntuales</option>
+                        <option value="Todos han sido puntuales">Todos han sido puntuales</option>
                         <option value="Algunos entran antes para hacer planes">Algunos entran antes para hacer planes
                         </option>
                     </select>
@@ -227,7 +226,7 @@
                     <button class="btn btn-secondary" type="button" onclick="prevPage()"><i
                             class="fa fa-chevron-left"></i> Anterior </button>
                     <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente <i
-                            class="fa fa-chevron-right"></i> </button>
+                            class="fa fa-chevron-right"></i></button>
                 </div>
                 <!-- Página 5 -->
                 <div class="page" id="page5">
@@ -245,7 +244,7 @@
                     <button class="btn btn-secondary" type="button" onclick="prevPage()"><i
                             class="fa fa-chevron-left"></i> Anterior </button>
                     <button class="btn btn-secondary" type="button" onclick="nextPage()">Siguiente <i
-                            class="fa fa-chevron-right"></i> </button>
+                            class="fa fa-chevron-right"></i></button>
                 </div>
                 <!-- Página 6 -->
                 <div class="page" id="page6">
@@ -259,6 +258,7 @@
                             class="fa fa-file-pdf-o"></i></button>
                 </div>
             </form>
+
         </div>
     </div>
 
@@ -327,13 +327,11 @@
                         style: 'container', // Estilo para un contenedor
                         margin: [0, 5],
                         columns: [
-
                             {
                                 width: '90%',
                                 stack: [
                                     { text: name_DOC, width: 'auto', style: 'nameDOC' }
                                 ],
-
                             },
                             {
                                 text: fecha,
@@ -342,7 +340,6 @@
                             }
                         ]
                     },
-
                     {
                         text: 'Informe de Equipo ' + equipo,
                         style: 'header',
@@ -390,7 +387,7 @@
                         style: 'tarjeta', // Estilo para una tarjeta
                         margin: [0, 10],
                         stack: [
-                            { text: 'Jugadores que ayan fallado', style: 'titulo' },
+                            { text: 'Jugadores que hayan fallado', style: 'titulo' },
                             { text: jugadorFallado, style: 'texto' },
                         ],
                     },
@@ -409,7 +406,8 @@
                             { text: '¿Qué tal se ve al equipo de nivel?', style: 'titulo' },
                             { text: nivel_equipo, style: 'texto' },
                         ],
-                    }, {
+                    },
+                    {
                         style: 'tarjeta', // Estilo para una tarjeta
                         margin: [0, 10],
                         stack: [
@@ -425,8 +423,6 @@
                             { text: inconveniente, style: 'texto' },
                         ],
                     },
-
-
                 ],
                 styles: {
                     fecha: {
@@ -465,7 +461,6 @@
 
                     },
                 }
-
             };
 
             // Generar el archivo PDF
