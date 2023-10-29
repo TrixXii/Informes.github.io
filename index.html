@@ -29,7 +29,6 @@
         background-position: center center;
         color: #ffffff;
         height: 100vh;
-        /* Establece la altura del cuerpo al 100% del viewport height (tamaño de la pantalla) */
     }
 
 
@@ -149,9 +148,7 @@
                     <select class="form-select" name="name-team" id="name-team">
                         <option value="" selected disabled>Selecciona un equipo</option>
                         <option value="BAD Lions Principal">BAD Lions Principal</option>
-                        <option value="BAD Lions Academy">BAD Lions Academy</option>
-                        <option value="BAD Lions Italiano">BAD Lions Italiano</option>
-                        <option value="BAD Lions Italiano Academy">BAD Lions Italiano Academy</option>
+                        <option value="BAD Lions Evergreen">BAD Lions Evergreen</option>
                     </select>
 
                     <label for="name-DOC">Pon el nombre de quien hace el documento:</label>
@@ -467,8 +464,6 @@
             pdfMake.createPdf(docDefinition).download('InformeEquipo.pdf');
 
             document.getElementById('mi-formulario').reset(); // Reemplaza 'mi-formulario' con el ID de tu formulario
-
-
         }
 
     </script>
