@@ -180,11 +180,9 @@
                 <div class="page" id="page3">
                     <h3>Estado del equipo</h3>
                     <label for="jugador_fallado">¿Algún jugador ha fallado?</label>
-                    <input class="form-control" type="text" name="jugador_fallado" id="jugador_fallado" required
-                        placeholder="Escribe el nombre del jugador que ha fallado, puedes añadir mas de 1 jugador y explicar el motivo(opcional). Ej: BAD (nombre), BAD (nombre)">
-
-                    
-
+                    <textarea class="form-control" name="jugador_fallado" id="jugador_fallado" rows="4" cols="50"
+                        required placeholder="Escribe el nombre del jugador que ha fallado, puedes añadir más de 1 jugador y explicar el motivo (opcional).Ejemplo:&#10; 1- BAD (nombre), porque no se a presentado&#10; 2- BAD (nombre)"></textarea>
+                
                     <label for="comportamiento">Comportamiento tanto general como individual</label>
                     <textarea class="form-control" name="comportamiento" id="comportamiento" rows="4" cols="50" required
                         placeholder="Escribe tus observaciones sobre el comportamiento del equipo"></textarea>
@@ -235,7 +233,8 @@
                     <textarea class="form-control" name="nivel_equipo" id="nivel_equipo" rows="3" required
                         placeholder="Escribe tu evaluación del nivel del equipo"></textarea>
 
-                    <label for="entrenamiento_personas">¿Quién necesita más entrenamiento y quién está en su nivel óptimo? </label>
+                    <label for="entrenamiento_personas">¿Quién necesita más entrenamiento y quién está en su nivel
+                        óptimo? </label>
                     <textarea class="form-control" name="entrenamiento_personas" id="entrenamiento_personas" rows="3"
                         required placeholder="Escribe tus observaciones sobre el progreso de las personas"></textarea>
 
